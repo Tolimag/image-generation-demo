@@ -68,6 +68,9 @@ class GenerationGrid {
     });
     promptField.root.addEventListener('prompt:complete', event => { if (!inStorybook()) this.complete(event.detail.result); });
     promptField.root.addEventListener('prompt:error', () => { if (!inStorybook()) this.fail(); });
+    root.addEventListener('animationend', event => {
+      if (event.target === root && event.animationName === 'generation-grid-enter') root.classList.remove('is-appearing');
+    });
     root.addEventListener('click', event => this.handleAction(event));
     root.addEventListener('keydown', event => {
       if (event.key !== 'Enter' && event.key !== ' ') return;
@@ -80,6 +83,7 @@ class GenerationGrid {
 
   start(request) {
     this.stopTimers();
+    this.root.classList.remove('is-appearing');
     this.setRequest(request);
     this.result = null;
     this.favorites.clear();
@@ -87,6 +91,10 @@ class GenerationGrid {
     this.phase = 'loading';
     this.readyCount = 0;
     this.render();
+    this.root.scrollTop = 0;
+    // Restart the entrance when a new request replaces an earlier result.
+    void this.root.offsetWidth;
+    this.root.classList.add('is-appearing');
   }
 
   complete(result) {
@@ -131,6 +139,7 @@ class GenerationGrid {
     this.result = null;
     this.feedbackChoice = null;
     this.root.hidden = true;
+    this.root.classList.remove('is-appearing');
     this.root.replaceChildren();
     document.querySelector('.page').classList.remove('has-generation');
     document.documentElement.classList.remove('has-generation');
@@ -162,6 +171,7 @@ class GenerationGrid {
 
   showDemo({ phase = 'ready', prompt, modelName = 'GPT Image 2', resultCount = 4, aspectRatio = '1:1', references = [] } = {}) {
     this.stopTimers();
+    this.root.classList.remove('is-appearing');
     this.favorites.clear();
     this.feedbackChoice = null;
     this.setRequest({

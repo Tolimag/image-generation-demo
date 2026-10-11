@@ -112,6 +112,11 @@ html:not(.story-mode) .page.has-generation .generation-grid { padding-bottom: ca
   scrollbar-width: thin;
   scrollbar-color: #424242 transparent;
 }
+.generation-grid.is-appearing { animation: generation-grid-enter 620ms cubic-bezier(.22, 1, .36, 1) both; }
+@keyframes generation-grid-enter {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 .generation-grid-actions { display: flex; justify-content: flex-start; gap: 4px; margin-top: 8px; animation: generation-actions-in 460ms cubic-bezier(.22, 1, .36, 1) 60ms backwards; }
 @keyframes generation-actions-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 .generation-grid-action { display: grid; place-items: center; width: 28px; height: 28px; padding: 0; border: 0; border-radius: 7px; background: transparent; color: #6c6c6c; cursor: pointer; transition: color 180ms ease, background-color 180ms ease; }
