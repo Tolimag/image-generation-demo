@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" class="is-entering">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#141414" />
+    <title>Turn Ideas Into Images</title>
+    <script>if (new URLSearchParams(location.search).has('storybook')) document.documentElement.classList.add('story-mode');</script>
+    <link rel="stylesheet" href="./styles.css?v=20261011-22" />
+    <link rel="stylesheet" href="./storybook-frame.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="page-header">
+        <details class="mobile-view-menu">
+          <summary aria-label="Local views"><img src="./assets/settings.svg" width="20" height="20" alt="" /></summary>
+          <nav class="mobile-view-links" aria-label="Local views">
+            <a href="./index.html" aria-current="page">Screen</a>
+            <a href="./storybook.html">Components</a>
+          </nav>
+        </details>
+      </header>
+      <nav class="view-switch" aria-label="Local views">
+        <a href="./index.html" aria-current="page">Screen</a>
+        <a href="./storybook.html">Components</a>
+      </nav>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="image-gallery" aria-label="Example image prompts">
+          <button type="button" class="gallery-card gallery-card-one" aria-label="Preview prompt for a dog portrait" data-prompt="A cinematic portrait of an elegant Afghan hound resting on a patterned sofa in a lush garden, soft afternoon light, rich natural colors, detailed fur, editorial photography."><img src="./assets/gallery-1.png" alt="" /></button>
+          <button type="button" class="gallery-card gallery-card-two" aria-label="Preview prompt for a fashion portrait" data-prompt="A close-up fashion portrait of a woman with vivid purple hair and translucent green sunglasses, confident expression, iridescent makeup, dramatic studio lighting, high-end editorial photography."><img src="./assets/gallery-2.png" alt="" /></button>
+          <button type="button" class="gallery-card gallery-card-three" aria-label="Preview prompt for a surreal flower garden" data-prompt="Surreal chrome letters floating above a field of wildflowers under a bright blue sky, playful dreamlike atmosphere, tiny butterflies, colorful reflections, imaginative 3D art."><img src="./assets/gallery-3.png" alt="" /></button>
+          <button type="button" class="gallery-card gallery-card-four" aria-label="Preview prompt for a rabbit near a volcano" data-prompt="A white rabbit wearing tiny sunglasses on dark volcanic rock, an erupting volcano and billowing smoke behind it, cinematic contrast, whimsical adventure photography."><img src="./assets/gallery-4.png" alt="" /></button>
+          <button type="button" class="gallery-card gallery-card-five" aria-label="Preview prompt for an underwater tiger" data-prompt="A tiger swimming through crystal-clear turquoise water beside a sleek black panther, sunlight rippling across the pool, overhead view, surreal wildlife photography."><img src="./assets/gallery-5.png" alt="" /></button>
+        </div>
+        <div class="hero-copy">
+          <h1 id="hero-title">TURN IDEAS INTO IMAGES</h1>
+          <p>Describe what you imagine, add references, and generate visuals in seconds</p>
+        </div>
+      </section>
+
+      <section class="generation-grid" id="generation-grid" aria-label="Generation results" hidden></section>
+      <div class="composer-region">
+      <section class="prompt-field" id="prompt-field" aria-label="Image generation prompt">
+        <div class="attachments" id="attachments" hidden></div>
+        <div class="input-wrap">
+          <label class="sr-only" for="prompt-input">Image prompt</label>
+          <textarea id="prompt-input" rows="1" placeholder="A cinematic fox in a neon city"></textarea>
+        </div>
+        <div class="toolbar">
+          <div class="settings" role="group" aria-label="Generation settings">
+            <button type="button" class="setting-button model-trigger" id="model-selector" data-menu="model" aria-haspopup="dialog" aria-expanded="false" aria-label="Select model: GPT Image 2">
+              <img class="setting-icon" src="./assets/sparkles.svg" width="20" height="20" alt="" />
+              <span id="model-name">GPT Image 2</span>
+            </button>
+            <div id="model-settings" class="model-settings"></div>
+            <div class="result-stepper" role="group" aria-label="Number of results">
+              <button type="button" class="stepper-control" id="result-decrement" aria-label="Decrease number of results" disabled><img src="./assets/minus.svg" width="20" height="20" alt="" /></button>
+              <output class="stepper-value" id="result-count" aria-live="polite" aria-atomic="true"><span class="stepper-current" id="result-current">1</span><span class="stepper-total">/4</span></output>
+              <button type="button" class="stepper-control" id="result-increment" aria-label="Increase number of results"><img src="./assets/plus.svg" width="20" height="20" alt="" /></button>
+            </div>
+          </div>
+          <button type="button" class="submit-button" id="submit" aria-label="Enter an image prompt">
+            <img src="./assets/arrow-up.svg" width="20" height="20" alt="" />
+            <span class="spinner" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="drop-overlay" aria-hidden="true">Drop images to add references</div>
+      </section>
+        <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+      </div>
+      <input type="file" id="file-input" accept="image/*" multiple hidden />
+    </main>
+    <div class="menu-layer" id="menu-layer"></div>
+    <dialog class="image-viewer" id="image-viewer" aria-label="Generated image preview">
+      <button type="button" class="image-viewer-close" aria-label="Close image preview"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3.5 3.5 14.5 14.5M14.5 3.5 3.5 14.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg></button>
+      <div class="image-viewer-stage"><img class="image-viewer-image" alt="" /></div>
+    </dialog>
+    <script src="./models.js" defer></script>
+    <script src="./app.js?v=20261011-12" defer></script>
+    <script src="./generation-grid.js?v=20261011-10" defer></script>
+    <script src="./storybook-bridge.js" defer></script>
+  </body>
+</html>

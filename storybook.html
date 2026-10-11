@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#141414" />
+    <title>Компоненты · Turn Ideas Into Images</title>
+    <link rel="stylesheet" href="./storybook.css" />
+  </head>
+  <body>
+    <header class="workbench-header">
+      <div class="workbench-brand"><span class="brand-mark" aria-hidden="true">W</span><span>Workroom UI</span><span class="brand-suffix">/ Storybook</span></div>
+      <nav class="workbench-views" aria-label="Локальные вкладки">
+        <a href="./index.html">Экран</a>
+        <a href="./storybook.html" aria-current="page">Компоненты</a>
+      </nav>
+    </header>
+    <div class="workbench-layout">
+      <aside class="workbench-sidebar" aria-label="Каталог компонентов">
+        <div class="sidebar-heading">КОМПОНЕНТЫ</div>
+        <nav id="component-nav" aria-label="Выбор компонента"></nav>
+      </aside>
+      <main class="workbench-main">
+        <header class="story-heading">
+          <div class="story-path">Компоненты <span aria-hidden="true">/</span> <span id="story-path-name">Поле промпта</span></div>
+          <h1 id="story-title">Поле промпта</h1>
+          <p id="story-summary"></p>
+        </header>
+        <div class="story-tabs" role="tablist" aria-label="Режим просмотра">
+          <button type="button" id="canvas-tab" role="tab" aria-selected="true" aria-controls="story-canvas">Сцена</button>
+          <button type="button" id="docs-tab" role="tab" aria-selected="false" aria-controls="story-docs">Описание</button>
+        </div>
+        <section id="story-canvas" class="canvas-panel" role="tabpanel" aria-labelledby="canvas-tab">
+          <div class="canvas-toolbar">
+            <span id="canvas-caption">Реальный компонент экрана</span>
+            <label class="viewport-control">Ширина
+              <select id="viewport-select" aria-label="Ширина превью">
+                <option value="fluid">Адаптивно</option>
+                <option value="wide">1400 px</option>
+                <option value="desktop">1100 px</option>
+                <option value="tablet">768 px</option>
+                <option value="mobile">390 px</option>
+              </select>
+            </label>
+          </div>
+          <div class="canvas-stage" id="canvas-stage">
+            <iframe id="story-frame" title="Превью компонента"></iframe>
+          </div>
+        </section>
+        <section id="story-docs" class="docs-panel" role="tabpanel" aria-labelledby="docs-tab" hidden>
+          <h2>О компоненте</h2>
+          <p id="docs-description"></p>
+          <h3>Варианты</h3>
+          <ul id="docs-variants"></ul>
+          <h3>Что проверить</h3>
+          <p id="docs-interactions"></p>
+          <h3>Исходники</h3>
+          <ul id="docs-sources"></ul>
+        </section>
+        <p class="story-hint">Каждая вкладка компонента имеет отдельную ссылку. Изменения в основном экране сразу видны здесь после обновления превью.</p>
+      </main>
+      <aside class="workbench-controls" aria-label="Настройки превью">
+        <div class="controls-heading"><h2>Настройки</h2><button id="reset-controls" type="button">Сбросить</button></div>
+        <div id="story-controls"></div>
+      </aside>
+    </div>
+    <script src="./models.js" defer></script>
+    <script src="./storybook.js" defer></script>
+  </body>
+</html>
